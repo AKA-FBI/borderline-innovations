@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:5000/api";
+const API_BASE = "https://borderline-api-pvz0.onrender.com/api";
 
 export const api = {
   async get(endpoint) {
