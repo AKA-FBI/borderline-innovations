@@ -64,7 +64,7 @@ export default function Events() {
               {events.map((e) => {
                 const { month, day } = formatDate(e.date);
                 return (
-                  <div key={e._id} className="event-card" style={{ display: "flex", gap: 24, alignItems: "flex-start", flexWrap: "wrap" }}>
+                  <div key={e._id} className="event-card event-card-row" style={{ display: "flex", gap: 24, alignItems: "flex-start", flexWrap: "wrap" }}>
                     <div style={{
                       background: `linear-gradient(135deg, ${COLORS.navy}, ${COLORS.darkTeal})`,
                       color: "white", padding: "18px 20px", borderRadius: 14, textAlign: "center", minWidth: 80, flexShrink: 0,
@@ -72,7 +72,7 @@ export default function Events() {
                       <div style={{ fontSize: 26, fontWeight: 700, lineHeight: 1 }}>{day}</div>
                       <div style={{ fontSize: 13, opacity: 0.8, marginTop: 4 }}>{month}</div>
                     </div>
-                    <div style={{ flex: 1, minWidth: 240 }}>
+                    <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ display: "flex", gap: 10, alignItems: "center", marginBottom: 8, flexWrap: "wrap" }}>
                         <h3 style={{ fontSize: 19, fontWeight: 700, color: COLORS.navy }}>{e.title}</h3>
                         <span style={{ background: `${COLORS.accent}15`, color: COLORS.accent, fontSize: 11, fontWeight: 700, padding: "4px 12px", borderRadius: 20 }}>{e.tag}</span>

@@ -52,14 +52,14 @@ export default function FindCourse() {
 
       <section className="section-padding" style={{ padding: "60px 40px", background: "#f8fafc" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div style={{ display: "flex", gap: 16, marginBottom: 44, flexWrap: "wrap", alignItems: "center" }}>
-            <div style={{ flex: 1, minWidth: 280, position: "relative" }}>
+          <div className="filter-bar" style={{ display: "flex", gap: 16, marginBottom: 44, flexWrap: "wrap", alignItems: "center" }}>
+            <div style={{ flex: 1, minWidth: 0, position: "relative" }}>
               <input type="text" placeholder="Search courses or universities..." value={search}
                 onChange={(e) => setSearch(e.target.value)} onKeyDown={handleKeyDown}
                 style={{ padding: "16px 50px 16px 18px", fontSize: 15, borderRadius: 12, border: "1.5px solid #d1d9e6", width: "100%" }} />
               <span onClick={handleSearch} style={{ position: "absolute", right: 16, top: "50%", transform: "translateY(-50%)", fontSize: 18, cursor: "pointer" }}>🔍</span>
             </div>
-            <div style={{ display: "flex", gap: 8 }}>
+            <div className="filter-buttons" style={{ display: "flex", gap: 8 }}>
               {["All", "Foundation", "Undergraduate", "Postgraduate"].map((l) => (
                 <button key={l} onClick={() => setLevel(l)} style={{
                   padding: "10px 20px", borderRadius: 8, fontSize: 14, fontWeight: 600, cursor: "pointer",
@@ -85,8 +85,8 @@ export default function FindCourse() {
             <>
               <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
                 {courses.map((c) => (
-                  <div key={c._id} className="event-card" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
-                    <div style={{ flex: 1, minWidth: 240 }}>
+                  <div key={c._id} className="event-card course-card-row" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
+                    <div style={{ flex: 1, minWidth: 200 }}>
                       <span style={{
                         display: "inline-block", background: c.level === "Foundation" ? "#f0f4ff" : c.level === "Undergraduate" ? "#f0fdf4" : "#fef3f2",
                         color: c.level === "Foundation" ? COLORS.royalBlue : c.level === "Undergraduate" ? "#16a34a" : COLORS.accent,
@@ -95,7 +95,7 @@ export default function FindCourse() {
                       <h3 style={{ fontSize: 18, fontWeight: 700, color: COLORS.navy, marginBottom: 4 }}>{c.title}</h3>
                       <p style={{ fontSize: 14, color: "#5a6577" }}>{c.university}</p>
                     </div>
-                    <div style={{ display: "flex", gap: 28, alignItems: "center", flexWrap: "wrap" }}>
+                    <div className="course-meta" style={{ display: "flex", gap: 28, alignItems: "center", flexWrap: "wrap" }}>
                       <div style={{ textAlign: "center" }}>
                         <div style={{ fontSize: 12, color: "#8898aa", marginBottom: 2 }}>Country</div>
                         <div style={{ fontSize: 14, fontWeight: 600, color: COLORS.navy }}>{c.countryFlag} {c.country}</div>
@@ -103,10 +103,6 @@ export default function FindCourse() {
                       <div style={{ textAlign: "center" }}>
                         <div style={{ fontSize: 12, color: "#8898aa", marginBottom: 2 }}>Duration</div>
                         <div style={{ fontSize: 14, fontWeight: 600, color: COLORS.navy }}>{c.duration}</div>
-                      </div>
-                      <div style={{ textAlign: "center" }}>
-                        <div style={{ fontSize: 12, color: "#8898aa", marginBottom: 2 }}>Tuition</div>
-                        <div style={{ fontSize: 14, fontWeight: 600, color: COLORS.accent }}>{c.tuitionFee}</div>
                       </div>
                       <Link to="/contact"><button className="btn-primary" style={{ padding: "10px 22px", fontSize: 13 }}>Apply →</button></Link>
                     </div>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { COLORS } from "../Layout";
-import api from "../api";
+import { submitEnquiry } from "../api";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", country: "", level: "", message: "" });
@@ -15,7 +15,7 @@ export default function Contact() {
     try {
       setStatus("submitting");
       setErrorMsg("");
-      await api.post("/enquiries", form)
+      await submitEnquiry(form);
       setStatus("success");
       setForm({ name: "", email: "", phone: "", country: "", level: "", message: "" });
     } catch (err) {
@@ -44,7 +44,7 @@ export default function Contact() {
       </div>
 
       <section className="section-padding" style={{ padding: "60px 40px" }}>
-        <div className="grid-2" style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "start" }}>
+        <div className="contact-grid" style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "start" }}>
           <div>
             <h2 style={{ fontSize: 26, fontWeight: 700, color: COLORS.navy, marginBottom: 8 }}>Enquiry Form</h2>
             <p style={{ color: "#5a6577", fontSize: 14, lineHeight: 1.7, marginBottom: 32 }}>
@@ -64,7 +64,7 @@ export default function Contact() {
                   <label style={{ fontSize: 13, fontWeight: 600, color: COLORS.navy, display: "block", marginBottom: 6 }}>Full Name *</label>
                   <input name="name" required value={form.name} onChange={handleChange} placeholder="Enter your full name" />
                 </div>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+                <div className="form-row" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
                   <div>
                     <label style={{ fontSize: 13, fontWeight: 600, color: COLORS.navy, display: "block", marginBottom: 6 }}>Email Address *</label>
                     <input name="email" type="email" required value={form.email} onChange={handleChange} placeholder="your@email.com" />
@@ -74,7 +74,7 @@ export default function Contact() {
                     <input name="phone" value={form.phone} onChange={handleChange} placeholder="+234..." />
                   </div>
                 </div>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+                <div className="form-row" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
                   <div>
                     <label style={{ fontSize: 13, fontWeight: 600, color: COLORS.navy, display: "block", marginBottom: 6 }}>Preferred Destination</label>
                     <select name="country" value={form.country} onChange={handleChange} style={{

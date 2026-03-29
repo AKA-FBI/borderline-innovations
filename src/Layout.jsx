@@ -213,6 +213,8 @@ export default function Layout() {
           .main-nav { padding: 0 24px !important; }
           .email-label { display: none !important; }
           .page-header h1 { font-size: 34px !important; }
+          .hero-search-box { flex: 1 1 100% !important; min-width: 0 !important; }
+          .hero-content-wrapper { gap: 32px !important; }
         }
         @media (max-width: 768px) {
           .stats-grid { grid-template-columns: 1fr 1fr !important; gap: 28px !important; }
@@ -220,36 +222,60 @@ export default function Layout() {
           .hero-h1 { font-size: 34px !important; }
           .hero-sub { font-size: 15px !important; }
           .section-title { font-size: 30px !important; }
-          .hero-section { min-height: 70vh !important; }
+          .hero-section { min-height: auto !important; padding: 60px 24px !important; }
           .section-padding { padding: 60px 20px !important; }
           .hero-buttons { flex-direction: column !important; }
-          .hero-buttons button { width: 100%; text-align: center; }
+          .hero-buttons a, .hero-buttons button { width: 100%; text-align: center; }
           .cta-email-row { flex-direction: column !important; }
           .cta-email-row button { width: 100%; }
           .cta-buttons { flex-direction: column !important; align-items: stretch !important; }
-          .cta-buttons button { width: 100%; text-align: center; }
+          .cta-buttons a, .cta-buttons button { width: 100%; text-align: center; }
           .testimonial-card { padding: 28px 22px !important; }
           .footer-grid { grid-template-columns: 1fr !important; }
           .footer-bottom { flex-direction: column !important; text-align: center !important; }
           .top-bar { flex-wrap: wrap; gap: 8px; }
-          .top-bar-email { font-size: 12px !important; }
+          .top-bar-email { display: none !important; }
           .page-header { padding: 60px 24px 44px !important; }
           .page-header h1 { font-size: 28px !important; }
+          .page-header p { font-size: 15px !important; }
+          .hero-text-col { min-width: 0 !important; }
+          .hero-search-box { flex: 1 1 100% !important; min-width: 0 !important; }
+          .course-card-row { flex-direction: column !important; align-items: flex-start !important; }
+          .course-meta { flex-direction: row !important; gap: 16px !important; flex-wrap: wrap !important; }
+          .event-card-row { flex-direction: column !important; align-items: stretch !important; }
+          .event-card-row .btn-primary { align-self: flex-start !important; }
+          .scholarship-card-row { flex-direction: column !important; align-items: stretch !important; }
+          .scholarship-card-row .btn-primary { align-self: flex-start !important; }
+          .contact-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+          .form-row { grid-template-columns: 1fr !important; }
+          .filter-bar { flex-direction: column !important; }
+          .filter-buttons { flex-wrap: wrap !important; }
+          .filter-buttons button { flex: 1 1 auto !important; min-width: 70px !important; padding: 8px 14px !important; font-size: 13px !important; }
+          .scholarship-highlight { flex-direction: column !important; text-align: center !important; }
+          .scholarship-highlight .btn-primary { width: 100% !important; }
         }
         @media (max-width: 480px) {
           .grid-4 { grid-template-columns: 1fr !important; }
           .grid-3 { grid-template-columns: 1fr !important; }
-          .hero-h1 { font-size: 28px !important; }
-          .hero-section { padding: 48px 20px !important; min-height: 60vh !important; }
-          .section-padding { padding: 48px 16px !important; }
-          .section-title { font-size: 24px !important; }
-          .stat-number { font-size: 28px !important; }
+          .hero-h1 { font-size: 26px !important; }
+          .hero-section { padding: 40px 16px !important; min-height: auto !important; }
+          .section-padding { padding: 40px 16px !important; }
+          .section-title { font-size: 22px !important; }
+          .stat-number { font-size: 24px !important; }
+          .stat-label { font-size: 12px !important; }
           .service-card { padding: 28px 20px !important; }
           .dest-card { min-height: 120px !important; padding: 24px 18px !important; }
           .about-box { padding: 28px 18px !important; }
-          .event-card { padding: 20px !important; }
-          .top-bar { padding: 12px 16px !important; }
-          .logo-mobile { transform: scale(0.75); transform-origin: left center; }
+          .event-card { padding: 18px !important; }
+          .top-bar { padding: 10px 14px !important; height: auto !important; min-height: 56px; }
+          .logo-mobile { transform: scale(0.65); transform-origin: left center; }
+          .logo-mobile img { height: 120px !important; margin: -35px 0 !important; }
+          .page-header { padding: 44px 16px 36px !important; }
+          .page-header h1 { font-size: 24px !important; }
+          .page-header p { font-size: 14px !important; }
+          .course-meta { gap: 12px !important; }
+          .btn-primary { padding: 12px 24px !important; font-size: 14px !important; }
+          .btn-outline { padding: 11px 22px !important; font-size: 14px !important; }
         }
       `}</style>
 

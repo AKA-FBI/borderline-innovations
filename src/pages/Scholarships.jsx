@@ -37,7 +37,7 @@ export default function Scholarships() {
             borderRadius: 16, padding: "36px 40px", marginBottom: 48, display: "flex", alignItems: "center", gap: 28, flexWrap: "wrap",
           }}>
             <div style={{ fontSize: 48 }}>💰</div>
-            <div style={{ flex: 1, minWidth: 240 }}>
+            <div style={{ flex: 1, minWidth: 0 }}>
               <h3 style={{ color: "white", fontSize: 20, fontWeight: 700, marginBottom: 6 }}>Need help finding the right scholarship?</h3>
               <p style={{ color: "rgba(255,255,255,0.75)", fontSize: 14, lineHeight: 1.7 }}>Our scholarship advisors can match you with opportunities based on your profile, destination, and field of study.</p>
             </div>
@@ -46,7 +46,7 @@ export default function Scholarships() {
 
           <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
             {scholarships.map((s, i) => (
-              <div key={i} className="event-card" style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+              <div key={i} className="event-card scholarship-card-row" style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
                 <div style={{
                   width: 60, height: 60, borderRadius: 14, display: "flex", alignItems: "center", justifyContent: "center",
                   background: `${COLORS.royalBlue}0D`, fontSize: 28, flexShrink: 0,

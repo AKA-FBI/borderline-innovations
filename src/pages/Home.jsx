@@ -110,8 +110,8 @@ export default function Home() {
             <path d="M20 80 L120 40 L180 20 L170 35 L130 50 L140 80 L125 65 L100 55 Z" fill="white" />
           </svg>
         </div>
-        <div style={{ maxWidth: 1100, margin: "0 auto", width: "100%", position: "relative", zIndex: 1, display: "flex", alignItems: "center", gap: 60, flexWrap: "wrap" }}>
-          <div style={{ flex: 1, minWidth: 320 }}>
+        <div className="hero-content-wrapper" style={{ maxWidth: 1100, margin: "0 auto", width: "100%", position: "relative", zIndex: 1, display: "flex", alignItems: "center", gap: 60, flexWrap: "wrap" }}>
+          <div className="hero-text-col" style={{ flex: 1, minWidth: 280 }}>
             <div style={{ animation: "fadeSlideUp 0.8s ease" }}>
               <span style={{
                 display: "inline-block", background: `${COLORS.accent}22`, border: `1px solid ${COLORS.accent}44`,
@@ -140,7 +140,7 @@ export default function Home() {
               ))}
             </div>
           </div>
-          <div style={{ flex: "0 0 420px", minWidth: 300 }}>
+          <div className="hero-search-box" style={{ flex: "0 0 420px", minWidth: 280, maxWidth: "100%" }}>
             <div style={{
               background: "rgba(255,255,255,0.12)", backdropFilter: "blur(12px)", borderRadius: 16, padding: 28,
               border: "1px solid rgba(255,255,255,0.15)",
