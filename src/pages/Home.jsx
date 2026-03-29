@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { COLORS } from "../Layout";
 import api from "../api";
 
@@ -31,6 +31,39 @@ export default function Home() {
   const [subEmail, setSubEmail] = useState("");
   const [subStatus, setSubStatus] = useState("idle"); // idle, loading, success, error
   const [subMsg, setSubMsg] = useState("");
+  const [heroSearch, setHeroSearch] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const searchRef = useRef(null);
+  const debounceRef = useRef(null);
+  const navigate = useNavigate();
+
+  // Autocomplete — fetch suggestions as user types
+  const handleHeroSearchChange = (e) => {
+    const val = e.target.value;
+    setHeroSearch(val);
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    if (val.length < 2) { setSuggestions([]); setShowSuggestions(false); return; }
+    debounceRef.current = setTimeout(async () => {
+      try {
+        const data = await api.get(`/courses?search=${encodeURIComponent(val)}&limit=6`);
+        setSuggestions(data.courses || []);
+        setShowSuggestions(true);
+      } catch (err) { setSuggestions([]); }
+    }, 300);
+  };
+
+  const handleHeroSubmit = () => {
+    setShowSuggestions(false);
+    navigate(`/find-course${heroSearch ? `?search=${encodeURIComponent(heroSearch)}` : ""}`);
+  };
+
+  // Close suggestions when clicking outside
+  useEffect(() => {
+    const handler = (e) => { if (searchRef.current && !searchRef.current.contains(e.target)) setShowSuggestions(false); };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
 
   const heroTexts = [
     { line1: "Your Gateway to", line2: "Global Education", sub: "Expert guidance for students seeking world-class education opportunities abroad. Apply to the university that fits your goals." },
@@ -146,24 +179,53 @@ export default function Home() {
               border: "1px solid rgba(255,255,255,0.15)",
             }}>
               <h3 style={{ color: "white", fontSize: 18, fontWeight: 600, marginBottom: 20 }}>Find Your Course</h3>
-              <div style={{ position: "relative" }}>
-                <input type="text" placeholder="Start typing to search courses..." style={{
-                  background: "rgba(255,255,255,0.95)", border: "none", borderRadius: 10, padding: "16px 50px 16px 18px", fontSize: 14, width: "100%",
-                }} />
-                <Link to="/find-course" style={{
+              <div ref={searchRef} style={{ position: "relative" }}>
+                <input type="text" placeholder="Start typing to search courses..."
+                  value={heroSearch} onChange={handleHeroSearchChange}
+                  onKeyDown={(e) => { if (e.key === "Enter") handleHeroSubmit(); }}
+                  onFocus={() => { if (suggestions.length > 0) setShowSuggestions(true); }}
+                  style={{
+                    background: "rgba(255,255,255,0.95)", border: "none", borderRadius: 10, padding: "16px 50px 16px 18px", fontSize: 14, width: "100%",
+                  }} />
+                <div onClick={handleHeroSubmit} style={{
                   position: "absolute", right: 8, top: "50%", transform: "translateY(-50%)",
                   width: 36, height: 36, borderRadius: 8,
                   background: COLORS.royalBlue, display: "flex", alignItems: "center", justifyContent: "center",
                   cursor: "pointer", fontSize: 16, textDecoration: "none",
-                }}>🔍</Link>
+                }}>🔍</div>
+                {/* Autocomplete dropdown */}
+                {showSuggestions && suggestions.length > 0 && (
+                  <div style={{
+                    position: "absolute", top: "100%", left: 0, right: 0, marginTop: 6,
+                    background: "white", borderRadius: 10, boxShadow: "0 8px 32px rgba(0,0,0,0.15)",
+                    overflow: "hidden", zIndex: 50,
+                  }}>
+                    {suggestions.map((c) => (
+                      <div key={c._id} onClick={() => { setShowSuggestions(false); navigate(`/find-course?search=${encodeURIComponent(c.title)}`); }}
+                        style={{
+                          padding: "12px 18px", cursor: "pointer", borderBottom: "1px solid #f0f0f0",
+                          transition: "background 0.15s", fontSize: 14, color: COLORS.navy,
+                        }}
+                        onMouseEnter={(e) => e.currentTarget.style.background = "#f8fafc"}
+                        onMouseLeave={(e) => e.currentTarget.style.background = "white"}>
+                        <div style={{ fontWeight: 600 }}>{c.title}</div>
+                        <div style={{ fontSize: 12, color: "#8898aa", marginTop: 2 }}>{c.university} · {c.countryFlag} {c.country}</div>
+                      </div>
+                    ))}
+                    <div onClick={handleHeroSubmit}
+                      style={{ padding: "10px 18px", cursor: "pointer", fontSize: 13, color: COLORS.royalBlue, fontWeight: 600, textAlign: "center", background: "#f8fafc" }}>
+                      View all results →
+                    </div>
+                  </div>
+                )}
               </div>
               <div style={{ marginTop: 16, display: "flex", gap: 8, flexWrap: "nowrap" }}>
                 {["Foundation", "Undergraduate", "Postgraduate"].map((t) => (
-                  <Link to="/find-course" key={t} style={{
+                  <span key={t} onClick={() => navigate(`/find-course?level=${t}`)} style={{
                     background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.8)",
                     padding: "6px 14px", borderRadius: 20, fontSize: 12, fontWeight: 500, cursor: "pointer",
                     transition: "all 0.2s", border: "1px solid rgba(255,255,255,0.15)", textDecoration: "none",
-                  }}>{t}</Link>
+                  }}>{t}</span>
                 ))}
               </div>
             </div>
