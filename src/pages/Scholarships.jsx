@@ -32,16 +32,16 @@ export default function Scholarships() {
 
       <section className="section-padding" style={{ padding: "60px 40px", background: "#f8fafc" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div style={{
+          <div className="scholarship-highlight" style={{
             background: `linear-gradient(135deg, ${COLORS.navy}, ${COLORS.darkTeal})`,
-            borderRadius: 16, padding: "36px 40px", marginBottom: 48, display: "flex", alignItems: "center", gap: 28, flexWrap: "wrap",
+            borderRadius: 16, padding: "36px 32px", marginBottom: 48, display: "flex", alignItems: "center", gap: 20, flexWrap: "wrap",
           }}>
-            <div style={{ fontSize: 48 }}>💰</div>
-            <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: 48, flexShrink: 0 }}>💰</div>
+            <div style={{ flex: "1 1 250px", minWidth: 0 }}>
               <h3 style={{ color: "white", fontSize: 20, fontWeight: 700, marginBottom: 6 }}>Need help finding the right scholarship?</h3>
               <p style={{ color: "rgba(255,255,255,0.75)", fontSize: 14, lineHeight: 1.7 }}>Our scholarship advisors can match you with opportunities based on your profile, destination, and field of study.</p>
             </div>
-            <Link to="/contact"><button className="btn-primary" style={{ padding: "14px 32px" }}>Book Free Consultation</button></Link>
+            <Link to="/contact" style={{ flexShrink: 0 }}><button className="btn-primary" style={{ padding: "14px 32px", whiteSpace: "nowrap" }}>Book Free Consultation</button></Link>
           </div>
 
           <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
@@ -51,7 +51,7 @@ export default function Scholarships() {
                   width: 60, height: 60, borderRadius: 14, display: "flex", alignItems: "center", justifyContent: "center",
                   background: `${COLORS.royalBlue}0D`, fontSize: 28, flexShrink: 0,
                 }}>🎓</div>
-                <div style={{ flex: 1, minWidth: 240 }}>
+                <div style={{ flex: "1 1 200px", minWidth: 0 }}>
                   <div style={{ display: "flex", gap: 10, alignItems: "center", marginBottom: 6, flexWrap: "wrap" }}>
                     <h3 style={{ fontSize: 18, fontWeight: 700, color: COLORS.navy }}>{s.title}</h3>
                     <span style={{
@@ -61,13 +61,13 @@ export default function Scholarships() {
                     }}>{s.level}</span>
                   </div>
                   <p style={{ fontSize: 14, color: "#5a6577", lineHeight: 1.7, marginBottom: 10 }}>{s.desc}</p>
-                  <div style={{ display: "flex", gap: 24, flexWrap: "wrap", fontSize: 13, color: "#8898aa" }}>
+                  <div style={{ display: "flex", gap: 16, flexWrap: "wrap", fontSize: 13, color: "#8898aa" }}>
                     <span>{s.country}</span>
                     <span>💵 {s.coverage}</span>
                     <span>📅 Deadline: {s.deadline}</span>
                   </div>
                 </div>
-                <Link to="/contact"><button className="btn-primary" style={{ padding: "10px 24px", fontSize: 13, alignSelf: "center" }}>Learn More →</button></Link>
+                <Link to="/contact" style={{ alignSelf: "center", flexShrink: 0 }}><button className="btn-primary" style={{ padding: "10px 24px", fontSize: 13 }}>Learn More →</button></Link>
               </div>
             ))}
           </div>

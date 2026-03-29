@@ -251,8 +251,11 @@ export default function Layout() {
           .filter-bar { flex-direction: column !important; }
           .filter-buttons { flex-wrap: wrap !important; }
           .filter-buttons button { flex: 1 1 auto !important; min-width: 70px !important; padding: 8px 14px !important; font-size: 13px !important; }
-          .scholarship-highlight { flex-direction: column !important; text-align: center !important; }
+          .scholarship-highlight { flex-direction: column !important; text-align: center !important; padding: 28px 24px !important; gap: 16px !important; }
           .scholarship-highlight .btn-primary { width: 100% !important; }
+          .scholarship-highlight h3 { font-size: 18px !important; }
+          .scholarship-card-row a { width: 100% !important; }
+          .scholarship-card-row a .btn-primary { width: 100% !important; }
         }
         @media (max-width: 480px) {
           .grid-4 { grid-template-columns: 1fr !important; }
@@ -276,6 +279,9 @@ export default function Layout() {
           .course-meta { gap: 12px !important; }
           .btn-primary { padding: 12px 24px !important; font-size: 14px !important; }
           .btn-outline { padding: 11px 22px !important; font-size: 14px !important; }
+          .scholarship-highlight { padding: 24px 20px !important; }
+          .scholarship-highlight h3 { font-size: 16px !important; }
+          .scholarship-card-row { gap: 14px !important; }
         }
       `}</style>
 
