@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { COLORS } from "../Layout";
-import { submitEnquiry } from "../api";
+import api from "../api";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", country: "", level: "", message: "" });
@@ -15,7 +15,7 @@ export default function Contact() {
     try {
       setStatus("submitting");
       setErrorMsg("");
-      await submitEnquiry(form);
+      await api.post("/enquiries", form)
       setStatus("success");
       setForm({ name: "", email: "", phone: "", country: "", level: "", message: "" });
     } catch (err) {
